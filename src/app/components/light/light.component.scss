@@ -1,0 +1,12 @@
+div {
+	background: darkred;
+	border-radius: 50px;
+	height: 100px;
+	position: relative;
+	width: 100px;
+
+	&.active {
+		background: radial-gradient(circle at center, orange 0%, rgb(250, 128, 114) 100%);
+		filter: drop-shadow(0 0 10px rgba(250, 128, 114, 0.8));
+	}
+}
