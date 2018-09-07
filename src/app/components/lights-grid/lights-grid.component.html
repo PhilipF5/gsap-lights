@@ -1,1 +1,1 @@
-<lights-row *ngFor="let row of sizeArray" [length]="size"></lights-row>
+<lights-row *ngFor="let row of sizeArray; let i = index" [length]="size" (toggled)="onToggle($event, i)"></lights-row>

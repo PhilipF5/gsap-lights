@@ -1,4 +1,4 @@
-import { Component, Input, QueryList, ViewChildren } from "@angular/core";
+import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
 import { LightComponent } from "../light/light.component";
 
 @Component({
@@ -8,6 +8,7 @@ import { LightComponent } from "../light/light.component";
 })
 export class LightsRowComponent {
 	@Input() public length: number;
+	@Output() public toggled: EventEmitter<number> = new EventEmitter<number>();
 
 	@ViewChildren(LightComponent)
 	public lights: QueryList<LightComponent>;
@@ -16,7 +17,7 @@ export class LightsRowComponent {
 		return new Array(this.length);
 	}
 
-	public toggle(source: number) {
+	public onToggle(source: number) {
 		let before = this.lights.find((item, index) => index === source - 1);
 		let after = this.lights.find((item, index) => index === source + 1);
 
@@ -26,6 +27,15 @@ export class LightsRowComponent {
 
 		if (after) {
 			after.toggle();
+		}
+
+		this.toggled.emit(source);
+	}
+
+	public toggle(index: number) {
+		let target = this.lights.find((item, i) => i === index);
+		if (target) {
+			target.toggle();
 		}
 	}
 }
