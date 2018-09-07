@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, EventEmitter, NgZone, OnInit, Output, ViewChild } from "@angular/core";
 import { Elastic, TimelineLite, TweenLite } from "gsap";
 
 @Component({
@@ -7,6 +7,8 @@ import { Elastic, TimelineLite, TweenLite } from "gsap";
 	styleUrls: ["./light.component.scss"],
 })
 export class LightComponent implements OnInit {
+	@Output() toggled: EventEmitter<{}> = new EventEmitter();
+
 	public get isActive(): boolean {
 		return this._active;
 	}
@@ -42,19 +44,25 @@ export class LightComponent implements OnInit {
 		return TweenLite.fromTo(this.light, 0.5, { className: "active" }, { className: "" });
 	}
 
-	public toggle() {
+	public onClick() {
 		if (this.isAnimating) {
 			return;
 		}
 
-		this._animating = true;
-		let animation = this.isActive ? this.inactivate() : this.activate();
-		this._active = !this.isActive;
 		let timeline = new TimelineLite()
 			.to(this.light, 0.15, { scale: 0.8 }, "start")
 			.to(this.light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
 
-		timeline.add(animation, "start").add(() => this.ngZone.run(() => {
+		timeline.add(this.toggle(), "start");
+		this.toggled.next();
+	}
+
+	public toggle() {
+		this._animating = true;
+		let animation = this.isActive ? this.inactivate() : this.activate();
+		this._active = !this.isActive;
+
+		return new TimelineLite().add(animation).add(() => this.ngZone.run(() => {
 			this._animating = false;
 		}));
 	}
