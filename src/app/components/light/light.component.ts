@@ -23,11 +23,15 @@ export class LightComponent implements OnInit {
 	@ViewChild("light")
 	private _light: ElementRef;
 
+	private get elem(): HTMLElement {
+		return this._elem.nativeElement;
+	}
+
 	private get light(): HTMLElement {
 		return this._light.nativeElement;
 	}
 
-	constructor(private ngZone: NgZone) {}
+	constructor(private _elem: ElementRef, private ngZone: NgZone) {}
 
 	ngOnInit() {
 		this._active = Math.random() > 0.5;
@@ -49,9 +53,10 @@ export class LightComponent implements OnInit {
 			return;
 		}
 
+		let light = this.elem.querySelector("div");
 		let timeline = new TimelineLite()
-			.to(this.light, 0.15, { scale: 0.8 }, "start")
-			.to(this.light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
+			.to(light, 0.15, { scale: 0.8 }, "start")
+			.to(light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
 
 		timeline.add(this.toggle(), "start");
 		this.toggled.next();
