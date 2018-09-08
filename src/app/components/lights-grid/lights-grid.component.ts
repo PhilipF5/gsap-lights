@@ -7,7 +7,7 @@ import { LightsRowComponent } from "../lights-row/lights-row.component";
 	styleUrls: ["./lights-grid.component.scss"]
 })
 export class LightsGridComponent {
-	@Input() public size: number = 5;
+	@Input() public size: number = 6;
 
 	@ViewChildren(LightsRowComponent)
 	public rows: QueryList<LightsRowComponent>;
