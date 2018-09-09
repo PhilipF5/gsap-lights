@@ -32,6 +32,15 @@ export class LightsGridComponent {
 		this.isSolved = this.checkSolution();
 	}
 
+	public reset() {
+		this.isSolved = false;
+		this.rows.forEach(row => {
+			row.lights.forEach(light => {
+				light.reset();
+			});
+		});
+	}
+
 	private checkSolution() {
 		let solved = true;
 		this.rows.forEach(row => {

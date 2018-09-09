@@ -13,4 +13,8 @@ export class LightsOutPage {
 	public get gridSolved() {
 		return this.grid.isSolved;
 	}
+
+	public onReset() {
+		this.grid.reset();
+	}
 }

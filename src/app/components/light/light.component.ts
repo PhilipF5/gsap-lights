@@ -34,10 +34,7 @@ export class LightComponent implements OnInit {
 	constructor(private _elem: ElementRef, private ngZone: NgZone) {}
 
 	ngOnInit() {
-		this._active = Math.random() > 0.5;
-		if (this.isActive) {
-			TweenLite.set(this.light, { className: "active" });
-		}
+		this.setState();
 	}
 
 	public activate(): TweenLite {
@@ -62,6 +59,10 @@ export class LightComponent implements OnInit {
 		this.toggled.next();
 	}
 
+	public reset() {
+		this.setState();
+	}
+
 	public toggle() {
 		this._animating = true;
 		let animation = this.isActive ? this.inactivate() : this.activate();
@@ -70,5 +71,14 @@ export class LightComponent implements OnInit {
 		return new TimelineLite().add(animation).add(() => this.ngZone.run(() => {
 			this._animating = false;
 		}));
+	}
+
+	private setState() {
+		this._active = Math.random() > 0.5;
+		if (this.isActive) {
+			TweenLite.set(this.light, { className: "active" });
+		} else {
+			TweenLite.set(this.light, { className: "" });
+		}
 	}
 }
