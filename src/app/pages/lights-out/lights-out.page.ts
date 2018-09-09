@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component, ViewChild } from "@angular/core";
+import { LightsGridComponent } from "app/components";
 
 @Component({
 	selector: "lights-out-page",
@@ -6,5 +7,10 @@ import { Component } from "@angular/core";
 	styleUrls: ["./lights-out.page.scss"]
 })
 export class LightsOutPage {
-	
+	@ViewChild(LightsGridComponent)
+	public grid: LightsGridComponent;
+
+	public get gridSolved() {
+		return this.grid.isSolved;
+	}
 }

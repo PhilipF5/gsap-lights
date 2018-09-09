@@ -7,6 +7,7 @@ import { LightsRowComponent } from "../lights-row/lights-row.component";
 	styleUrls: ["./lights-grid.component.scss"]
 })
 export class LightsGridComponent {
+	public isSolved: boolean;
 	@Input() public size: number = 6;
 
 	@ViewChildren(LightsRowComponent)
@@ -27,5 +28,20 @@ export class LightsGridComponent {
 		if (after) {
 			after.toggle(col);
 		}
+
+		this.isSolved = this.checkSolution();
+	}
+
+	private checkSolution() {
+		let solved = true;
+		this.rows.forEach(row => {
+			row.lights.forEach(light => {
+				if (light.isActive) {
+					solved = false;
+				}
+			});
+		});
+
+		return solved;
 	}
 }
