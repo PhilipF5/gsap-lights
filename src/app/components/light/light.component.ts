@@ -50,10 +50,9 @@ export class LightComponent implements OnInit {
 			return;
 		}
 
-		let light = this.elem.querySelector("div");
 		let timeline = new TimelineLite()
-			.to(light, 0.15, { scale: 0.8 }, "start")
-			.to(light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
+			.to(this.light, 0.15, { scale: 0.8 }, "start")
+			.to(this.light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
 
 		timeline.add(this.toggle(), "start");
 		this.toggled.next();
