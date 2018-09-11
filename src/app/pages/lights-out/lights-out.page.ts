@@ -4,7 +4,7 @@ import { LightsGridComponent } from "app/components";
 @Component({
 	selector: "lights-out-page",
 	templateUrl: "./lights-out.page.html",
-	styleUrls: ["./lights-out.page.scss"]
+	styleUrls: ["./lights-out.page.scss"],
 })
 export class LightsOutPage {
 	@ViewChild(LightsGridComponent)

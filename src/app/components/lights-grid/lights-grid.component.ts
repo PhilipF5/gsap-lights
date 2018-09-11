@@ -4,14 +4,14 @@ import { LightsRowComponent } from "../lights-row/lights-row.component";
 @Component({
 	selector: "lights-grid",
 	templateUrl: "./lights-grid.component.html",
-	styleUrls: ["./lights-grid.component.scss"]
+	styleUrls: ["./lights-grid.component.scss"],
 })
 export class LightsGridComponent {
 	public isSolved: boolean;
-	@Input() public size: number = 6;
-
 	@ViewChildren(LightsRowComponent)
 	public rows: QueryList<LightsRowComponent>;
+	@Input()
+	public size: number = 6;
 
 	public get sizeArray() {
 		return new Array(this.size);

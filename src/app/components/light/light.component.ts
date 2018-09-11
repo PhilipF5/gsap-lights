@@ -7,7 +7,8 @@ import { Elastic, TimelineLite, TweenLite } from "gsap";
 	styleUrls: ["./light.component.scss"],
 })
 export class LightComponent implements OnInit {
-	@Output() toggled: EventEmitter<{}> = new EventEmitter();
+	@Output()
+	public toggled: EventEmitter<{}> = new EventEmitter();
 
 	public get isActive(): boolean {
 		return this._active;
@@ -19,7 +20,6 @@ export class LightComponent implements OnInit {
 
 	private _active: boolean;
 	private _animating: boolean;
-
 	@ViewChild("light")
 	private _light: ElementRef;
 
@@ -67,9 +67,11 @@ export class LightComponent implements OnInit {
 		let animation = this.isActive ? this.inactivate() : this.activate();
 		this._active = !this.isActive;
 
-		return new TimelineLite().add(animation).add(() => this.ngZone.run(() => {
-			this._animating = false;
-		}));
+		return new TimelineLite().add(animation).add(() =>
+			this.ngZone.run(() => {
+				this._animating = false;
+			})
+		);
 	}
 
 	private setState() {

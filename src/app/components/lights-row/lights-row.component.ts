@@ -4,14 +4,15 @@ import { LightComponent } from "../light/light.component";
 @Component({
 	selector: "lights-row",
 	templateUrl: "./lights-row.component.html",
-	styleUrls: ["./lights-row.component.scss"]
+	styleUrls: ["./lights-row.component.scss"],
 })
 export class LightsRowComponent {
-	@Input() public length: number;
-	@Output() public toggled: EventEmitter<number> = new EventEmitter<number>();
-
+	@Input()
+	public length: number;
 	@ViewChildren(LightComponent)
 	public lights: QueryList<LightComponent>;
+	@Output()
+	public toggled: EventEmitter<number> = new EventEmitter<number>();
 
 	public get lengthArray() {
 		return new Array(this.length);
