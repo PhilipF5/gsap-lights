@@ -1,5 +1,5 @@
 import { Component, ViewChild } from "@angular/core";
-import { LightsGridComponent } from "app/components";
+import { LightsGridComponent } from "parent-subject/components";
 
 @Component({
 	selector: "lights-out-page",

@@ -1,10 +1,12 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 
-const routes: Routes = [];
+import { LightsOutPage } from "./pages";
+
+const routes: Routes = [{ path: "service-subject", component: LightsOutPage }];
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class ServiceSubjectRoutingModule {}
