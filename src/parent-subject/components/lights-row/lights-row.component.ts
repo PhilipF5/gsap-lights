@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import { TimelineLite } from "gsap";
 import { LightComponent } from "../light/light.component";
 
 @Component({
@@ -33,10 +34,10 @@ export class LightsRowComponent {
 		this.toggled.emit(source);
 	}
 
-	public toggle(index: number) {
+	public toggle(index: number): TimelineLite {
 		let target = this.lights.find((item, i) => i === index);
 		if (target) {
-			target.toggle();
+			return target.toggle();
 		}
 	}
 }

@@ -33,10 +33,10 @@ export class LightsRowComponent {
 		this.toggled.emit(source);
 	}
 
-	public toggle(index: number) {
+	public toggle(index: number): TimelineLite {
 		let target = this.lights.find((item, i) => i === index);
 		if (target) {
-			target.toggle();
+			return target.toggle();
 		}
 	}
 }
