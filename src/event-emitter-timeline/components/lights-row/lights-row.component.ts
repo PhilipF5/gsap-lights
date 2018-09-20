@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output, QueryList, ViewChildren } from "@angular/core";
+import { TimelineLite } from "gsap";
 import { LightComponent } from "../light/light.component";
 
 @Component({
@@ -12,25 +13,25 @@ export class LightsRowComponent {
 	@ViewChildren(LightComponent)
 	public lights: QueryList<LightComponent>;
 	@Output()
-	public toggled: EventEmitter<number> = new EventEmitter<number>();
+	public toggled = new EventEmitter<{ source: number, timeline: TimelineLite }>();
 
 	public get lengthArray() {
 		return new Array(this.length);
 	}
 
-	public onToggle(source: number) {
+	public onToggle(source: number, timeline: TimelineLite) {
 		let before = this.lights.find((item, index) => index === source - 1);
 		let after = this.lights.find((item, index) => index === source + 1);
 
 		if (before) {
-			before.toggle();
+			timeline.add(before.toggle(), "start+=0.25");
 		}
 
 		if (after) {
-			after.toggle();
+			timeline.add(after.toggle(), "start+=0.25");
 		}
 
-		this.toggled.emit(source);
+		this.toggled.emit({ source, timeline });
 	}
 
 	public toggle(index: number): TimelineLite {

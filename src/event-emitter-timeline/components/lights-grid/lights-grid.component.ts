@@ -1,4 +1,5 @@
 import { Component, Input, QueryList, ViewChildren } from "@angular/core";
+import { TimelineLite } from "gsap";
 import { LightsRowComponent } from "../lights-row/lights-row.component";
 
 @Component({
@@ -17,16 +18,16 @@ export class LightsGridComponent {
 		return new Array(this.size);
 	}
 
-	public onToggle(col: number, row: number) {
+	public onToggle(col: number, row: number, timeline: TimelineLite) {
 		let before = this.rows.find((item, index) => index === row - 1);
 		let after = this.rows.find((item, index) => index === row + 1);
 
 		if (before) {
-			before.toggle(col);
+			timeline.add(before.toggle(col), "start+=0.25");
 		}
 
 		if (after) {
-			after.toggle(col);
+			timeline.add(after.toggle(col), "start+=0.25");
 		}
 
 		this.isSolved = this.checkSolution();

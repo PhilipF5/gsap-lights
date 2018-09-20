@@ -8,7 +8,7 @@ import { Elastic, TimelineLite, TweenLite } from "gsap";
 })
 export class LightComponent implements OnInit {
 	@Output()
-	public toggled: EventEmitter<{}> = new EventEmitter();
+	public toggled = new EventEmitter<TimelineLite>();
 
 	public get isActive(): boolean {
 		return this._active;
@@ -55,7 +55,7 @@ export class LightComponent implements OnInit {
 			.to(this.light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
 
 		timeline.add(this.toggle(), "start");
-		this.toggled.next();
+		this.toggled.next(timeline);
 	}
 
 	public reset() {
