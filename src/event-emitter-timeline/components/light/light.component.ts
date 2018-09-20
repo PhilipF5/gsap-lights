@@ -23,15 +23,11 @@ export class LightComponent implements OnInit {
 	@ViewChild("light")
 	private _light: ElementRef;
 
-	private get elem(): HTMLElement {
-		return this._elem.nativeElement;
-	}
-
 	private get light(): HTMLElement {
 		return this._light.nativeElement;
 	}
 
-	constructor(private _elem: ElementRef, private ngZone: NgZone) {}
+	constructor(private ngZone: NgZone) {}
 
 	ngOnInit() {
 		this.setState();
