@@ -47,8 +47,8 @@ export class LightComponent implements OnInit {
 		}
 
 		let timeline = new TimelineLite()
-			.to(this.light, 0.15, { scale: 0.8 }, "start")
-			.to(this.light, 2, { scale: 1, ease: Elastic.easeOut.config(1, 0.3) });
+			.to(this.light, 0.15, { scale: 0.8, force3D: true }, "start")
+			.to(this.light, 2, { scale: 1, force3D: true, ease: Elastic.easeOut.config(1, 0.3) });
 
 		timeline.add(this.toggle(), "start");
 		this.toggled.next();
