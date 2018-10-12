@@ -11,7 +11,9 @@
 		"test": "ng test",
 		"lint": "ng lint",
 		"e2e": "ng e2e",
-		"deploy": "ng build --prod && now dist/lights-out --public --local-config=../../now.json && now alias gsap-lights"
+		"deploy": "yarn build --prod && yarn now && yarn alias",
+		"now": "now dist/lights-out --public --local-config=../../now.json",
+		"alias": "now alias"
 	},
 	"private": true,
 	"dependencies": {
