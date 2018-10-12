@@ -1,4 +1,5 @@
 {
 	"name": "gsap-lights",
-	"type": "static"
+	"type": "static",
+	"alias": ["gsap-lights"]
 }
