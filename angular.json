@@ -32,7 +32,7 @@
 					"spec": false
 				}
 			},
-			"targets": {
+			"architect": {
 				"build": {
 					"builder": "@angular-devkit/build-angular:browser",
 					"options": {
@@ -41,8 +41,13 @@
 						"main": "src/main.ts",
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.app.json",
-						"assets": ["src/favicon.png", "src/assets"],
-						"styles": ["src/styles.scss"],
+						"assets": [
+							"src/favicon.png",
+							"src/assets"
+						],
+						"styles": [
+							"src/styles.scss"
+						],
 						"scripts": []
 					},
 					"configurations": {
@@ -89,16 +94,26 @@
 						"polyfills": "src/polyfills.ts",
 						"tsConfig": "src/tsconfig.spec.json",
 						"karmaConfig": "src/karma.conf.js",
-						"styles": ["src/styles.scss"],
+						"styles": [
+							"src/styles.scss"
+						],
 						"scripts": [],
-						"assets": ["src/favicon.png", "src/assets"]
+						"assets": [
+							"src/favicon.png",
+							"src/assets"
+						]
 					}
 				},
 				"lint": {
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
-						"tsConfig": ["src/tsconfig.app.json", "src/tsconfig.spec.json"],
-						"exclude": ["**/node_modules/**"]
+						"tsConfig": [
+							"src/tsconfig.app.json",
+							"src/tsconfig.spec.json"
+						],
+						"exclude": [
+							"**/node_modules/**"
+						]
 					}
 				}
 			}
@@ -106,7 +121,7 @@
 		"lights-out-e2e": {
 			"root": "e2e/",
 			"projectType": "application",
-			"targets": {
+			"architect": {
 				"e2e": {
 					"builder": "@angular-devkit/build-angular:protractor",
 					"options": {
@@ -123,7 +138,9 @@
 					"builder": "@angular-devkit/build-angular:tslint",
 					"options": {
 						"tsConfig": "e2e/tsconfig.e2e.json",
-						"exclude": ["**/node_modules/**"]
+						"exclude": [
+							"**/node_modules/**"
+						]
 					}
 				}
 			}

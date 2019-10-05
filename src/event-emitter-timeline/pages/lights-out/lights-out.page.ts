@@ -7,7 +7,7 @@ import { LightsGridComponent } from "event-emitter-timeline/components";
 	styleUrls: ["./lights-out.page.scss"],
 })
 export class LightsOutPage {
-	@ViewChild(LightsGridComponent)
+	@ViewChild(LightsGridComponent, { static: true })
 	public grid: LightsGridComponent;
 
 	public get gridSolved() {

@@ -20,7 +20,7 @@ export class LightComponent implements OnInit {
 
 	private _active: boolean;
 	private _animating: boolean;
-	@ViewChild("light")
+	@ViewChild("light", { static: true })
 	private _light: ElementRef;
 
 	private get light(): HTMLElement {
